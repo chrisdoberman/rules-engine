@@ -20,6 +20,7 @@ public class RuleTest {
 		criteriaFilters.add(new OrganizationCriteriaFilter());
 		
 		Rule rule = new Rule(criteriaFilters);
+		rule.setRuleId("rule 1");
 		
 		List<Item> excludedItems = new ArrayList<Item>();
 		List<Item> includedItems = new ArrayList<Item>();
@@ -31,9 +32,12 @@ public class RuleTest {
 		excludedItems.add(new Item("MEX", "rangers"));
 		
 		rule.filter(excludedItems, includedItems);
+		rule.updateRuleMatches(excludedItems, includedItems);
 		
 		assertEquals(1, excludedItems.size());
 		assertEquals(4, includedItems.size());
+		assertTrue(excludedItems.get(0).getRuleIds().contains("rule 1"));
+		assertFalse(includedItems.get(0).getRuleIds().contains("rule 1"));
 		
 		
 	}

@@ -7,6 +7,7 @@ import rule.filter.CriteriaFilter;
 public class Rule {
 
 	private List<CriteriaFilter> criteriaFilters;
+	private String ruleId;
 
 	public Rule(List<CriteriaFilter> criteriaFilters) {
 		this.criteriaFilters = criteriaFilters;
@@ -18,12 +19,22 @@ public class Rule {
 		}
 	}
 
-	public List<CriteriaFilter> getCriteriaFilters() {
-		return criteriaFilters;
+	public void updateRuleMatches(List<Item> excludedItems, List<Item> includedItems) {
+		for (Item item : excludedItems) {
+			item.getRuleIds().add(ruleId);
+		}
+		//remove old rule matches
+		for (Item item : includedItems) {
+			item.getRuleIds().remove(ruleId);
+		}
 	}
 
-	public void setCriteriaFilters(List<CriteriaFilter> criteriaFilters) {
-		this.criteriaFilters = criteriaFilters;
+	public String getRuleId() {
+		return ruleId;
+	}
+
+	public void setRuleId(String ruleId) {
+		this.ruleId = ruleId;
 	}
 
 }

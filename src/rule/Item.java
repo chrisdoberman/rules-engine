@@ -1,11 +1,15 @@
 package rule;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Item {
 
 	private String country;
 	private String organization;
-
+	private Set<String> ruleIds = new HashSet<String>();
 	
+
 	public Item(String country, String organization) {
 		this.country = country;
 		this.organization = organization;
@@ -27,7 +31,14 @@ public class Item {
 		this.organization = organization;
 	}
 
-	
+	public Set<String> getRuleIds() {
+		return ruleIds;
+	}
+
+	public void setRuleIds(Set<String> ruleIds) {
+		this.ruleIds = ruleIds;
+	}
+
 
 	
 }
